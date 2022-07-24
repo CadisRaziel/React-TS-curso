@@ -1,6 +1,8 @@
 import { useCallback, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { InputLogin } from "./components/InputLogin";
+
 
 export const Login = () => {
     const [email, setEMail] = useState('');
@@ -39,7 +41,7 @@ export const Login = () => {
     //useRef = permite que armazena valor dentro de uma variavel
     //e esses valores não serao alterados quando o react builda a tela novamente
     //esse valor vai ser alterado depois que renderizar o html
-    const inputPasswordRef = useRef<HTMLInputElement>(null);
+    // const inputPasswordRef = useRef<HTMLInputElement>(null);
 
 
     //para voltar para alguma pagina !! 
@@ -54,7 +56,7 @@ export const Login = () => {
             <form>
                 <p>Quantiade de caracteres no email: {emailLenght}</p>
 
-                <label>
+                {/* <label>
                     <span>Email</span>
                     <input
                         value={email}
@@ -63,9 +65,9 @@ export const Login = () => {
                         // onKeyDown = ao apertar o enter vai focar no outro campo
                         onKeyDown={e => e.key === 'Enter' ? inputPasswordRef.current?.focus() : undefined}
                     />
-                </label>
+                </label> 
 
-                <label>
+                 <label>
                     <span>Senha</span>
                     <input
                         ref={inputPasswordRef}
@@ -74,7 +76,23 @@ export const Login = () => {
                         onChange={e => setPassword(e.target.value)}
                     />
 
-                </label>
+                </label> */}
+
+                {/* Componetizado */}
+                <InputLogin 
+                label="Email" 
+                value={email}
+                onChange={newValue => setEMail(newValue)}
+                // onPressEnter={ () => inputPasswordRef.current?.focus()}
+                />
+
+                <InputLogin 
+                label="Senha" 
+                type={"password"}
+                value={password} 
+                onChange={newValue => setPassword(newValue)}                
+                />
+               
 
             </form>
 
