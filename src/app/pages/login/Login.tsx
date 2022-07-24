@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ButtonLogin } from "./components/ButtonLogin";
 
 import { InputLogin } from "./components/InputLogin";
 
@@ -99,9 +100,26 @@ export const Login = () => {
 
             </form>
 
-            <button type="button" onClick={handlerEntrar}>
+            <ButtonLogin
+            type="button"
+            onClick={handlerEntrar}
+            >
+                Logar
+            </ButtonLogin>
+            <ButtonLogin
+            type="button"
+            onClick={handlerEntrar}
+            >
+                <h4>Cadastrar</h4>
+            </ButtonLogin>
+            {/* <ButtonLogin
+             type="button"
+             onClick={handlerEntrar}
+            children={<>Cadastrar</>}
+            /> */}
+            {/* <button type="button" onClick={handlerEntrar}>
                 Entrar
-            </button>
+            </button> */}
 
             <button onClick={handleClick}>
                 Voltar
