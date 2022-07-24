@@ -1,5 +1,5 @@
-import {  useCallback, useMemo, useState } from "react";
-import { useNavigate  } from "react-router-dom";
+import { useCallback, useMemo, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 export const Login = () => {
@@ -29,11 +29,17 @@ export const Login = () => {
 
     // useCallBack = tipo um sharedPreference (memoriza funcoes)
     // evita que se reconstrua toda vez que um state for alterado
-    const handlerEntrar = useCallback( () => {
+    const handlerEntrar = useCallback(() => {
         console.log(email)
         console.log(password)
-    }, [email, password]) 
+       
+    }, [email, password])
 
+
+    //useRef = permite que armazena valor dentro de uma variavel
+    //e esses valores não serao alterados quando o react builda a tela novamente
+    //esse valor vai ser alterado depois que renderizar o html
+    const inputPasswordRef = useRef<HTMLInputElement>(null);
 
 
     //para voltar para alguma pagina !! 
@@ -50,13 +56,24 @@ export const Login = () => {
 
                 <label>
                     <span>Email</span>
-                    <input value={email} onChange={e => setEMail(e.target.value)}/>
+                    <input
+                        value={email}
+                        onChange={e => setEMail(e.target.value)}
+
+                        // onKeyDown = ao apertar o enter vai focar no outro campo
+                        onKeyDown={e => e.key === 'Enter' ? inputPasswordRef.current?.focus() : undefined}
+                    />
                 </label>
 
                 <label>
                     <span>Senha</span>
-                    <input type={"password"} value={password} onChange={e => setPassword(e.target.value)}/>
-                    
+                    <input
+                        ref={inputPasswordRef}
+                        type={"password"}
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                    />
+
                 </label>
 
             </form>
