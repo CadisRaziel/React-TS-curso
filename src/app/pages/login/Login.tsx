@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useMemo, useState } from "react";
 import { useNavigate  } from "react-router-dom";
 
 
@@ -11,13 +11,19 @@ export const Login = () => {
     //         console.log('sim')
     //     }else {
     //         console.log('não')
-    //     }
+    //     }m 
     // }, []);
 
-    useEffect(() => {
-        console.log(email)
-        console.log(password)
-    }, [email, password])
+    // useEffect(() => {
+    //     console.log(email)
+    //     console.log(password)
+    // }, [email, password])
+
+    //imagine uma operação complexa e eu nao quero que ele fique sendo refeito toda vez que o estado seja alterado
+    // useMemo = tipo um sharedPreference
+    const emailLenght = useMemo(() => {
+        return email.length * 2
+    }, [email.length]);
 
 
     //para voltar para alguma pagina !! 
@@ -34,6 +40,7 @@ export const Login = () => {
     return (
         <div>
             <form>
+                <p>Quantiade de caracteres no email: {emailLenght}</p>
 
                 <label>
                     <span>Email</span>
