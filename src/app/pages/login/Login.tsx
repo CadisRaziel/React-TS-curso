@@ -1,10 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate  } from "react-router-dom";
 
 
 export const Login = () => {
     const [email, setEMail] = useState('');
     const [password, setPassword] = useState('');
+
+    // useEffect(() => {
+    //     if(window.confirm('Você é homen ?')) {
+    //         console.log('sim')
+    //     }else {
+    //         console.log('não')
+    //     }
+    // }, []);
+
+    useEffect(() => {
+        console.log(email)
+        console.log(password)
+    }, [email, password])
 
 
     //para voltar para alguma pagina !! 
