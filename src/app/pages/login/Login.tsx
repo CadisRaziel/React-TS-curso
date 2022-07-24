@@ -1,4 +1,4 @@
-import {  useMemo, useState } from "react";
+import {  useCallback, useMemo, useState } from "react";
 import { useNavigate  } from "react-router-dom";
 
 
@@ -19,11 +19,21 @@ export const Login = () => {
     //     console.log(password)
     // }, [email, password])
 
+
+    // evita que se reconstrua toda vez que um state for alterado
     //imagine uma operação complexa e eu nao quero que ele fique sendo refeito toda vez que o estado seja alterado
-    // useMemo = tipo um sharedPreference
+    // useMemo = tipo um sharedPreference (memoriza calculos)
     const emailLenght = useMemo(() => {
         return email.length * 2
     }, [email.length]);
+
+    // useCallBack = tipo um sharedPreference (memoriza funcoes)
+    // evita que se reconstrua toda vez que um state for alterado
+    const handlerEntrar = useCallback( () => {
+        console.log(email)
+        console.log(password)
+    }, [email, password]) 
+
 
 
     //para voltar para alguma pagina !! 
@@ -32,10 +42,6 @@ export const Login = () => {
         navigate('/pagina-inicial')
     }
 
-    const handlerEntrar = () => {
-        console.log(email)
-        console.log(password)
-    }
 
     return (
         <div>
