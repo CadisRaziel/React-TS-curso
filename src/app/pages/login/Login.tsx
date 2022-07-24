@@ -41,7 +41,7 @@ export const Login = () => {
     //useRef = permite que armazena valor dentro de uma variavel
     //e esses valores não serao alterados quando o react builda a tela novamente
     //esse valor vai ser alterado depois que renderizar o html
-    // const inputPasswordRef = useRef<HTMLInputElement>(null);
+    const inputPasswordRef = useRef<HTMLInputElement>(null);
 
 
     //para voltar para alguma pagina !! 
@@ -83,13 +83,16 @@ export const Login = () => {
                 label="Email" 
                 value={email}
                 onChange={newValue => setEMail(newValue)}
-                // onPressEnter={ () => inputPasswordRef.current?.focus()}
+                onPressEnter={ () => inputPasswordRef.current?.focus()}
                 />
+
+                
 
                 <InputLogin 
                 label="Senha" 
                 type={"password"}
                 value={password} 
+                ref={inputPasswordRef}
                 onChange={newValue => setPassword(newValue)}                
                 />
                

@@ -1,6 +1,8 @@
 
 //! Componentizando e passando parametros
 
+import React from "react";
+
 
 //!Jeito novo
 type Props = {
@@ -13,11 +15,13 @@ type Props = {
     onPressEnter?: () => void;
 
 };
-export const InputLogin = (props: Props) => {
+// React.forwardRef => para podermos utilizar junto com o 'useRef'
+export const InputLogin = React.forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
     return (
         <label>
         <span>{props.label}</span>
         <input
+            ref={ref}
             value={props.value}
             type={props.type}
             onChange={e => props.onChange(e.target.value)}
@@ -30,7 +34,7 @@ export const InputLogin = (props: Props) => {
         />
     </label>
     );
-};
+});
 
 // =========================================================
 
@@ -38,20 +42,25 @@ export const InputLogin = (props: Props) => {
 // interface IInputLoginProps {
 //     label: string;    
 //     value: string;
+//     type?: string;
 //     onChange: (newValue: string) => void;
 //     onPressEnter?: () => void;
 // }
-// export const InputLogin: React.FC<IInputLoginProps> = (props) => {
+// export const InputLogin  =  React.forwardRef<HTMLInputElement, IInputLoginProps>((props) => {
 //     return (
 //         <label>
 //         <span>{props.label}</span>
 //         <input
 //             value={props.value}
+//             type={props.type}
 //             onChange={e => props.onChange(e.target.value)}
 
-//             // onPressEnter = ao apertar o enter vai focar no outro campo
-//             onPressEnter={e => e.key === 'Enter' ? props.onPressEnter : undefined}
+//             // onKeyDown = ao apertar o enter vai focar no outro campo
+//             onKeyDown={e => e.key === 'Enter'
+//              ? props.onPressEnter && props.onPressEnter()
+//              : undefined
+//             }
 //         />
 //     </label>
 //     );
-// }
+// })
