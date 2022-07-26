@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom'
-import { useRef } from "react";
+import { useContext, useRef } from "react";
+import { UsuarioLogadoContext } from '../../shared/contexts/UsuarioLogado';
 
 export const Dashboard = () => {
+
+    //utilizando o contexto
+    const { nomeDoUsuario } = useContext(UsuarioLogadoContext);
 
     //useRef não altera o valor visualmente (nao da um build da pagina) porém esta atualizando
     const counterRef = useRef({ counter: 0})
@@ -9,6 +13,11 @@ export const Dashboard = () => {
     return (
        <div>
        <p>Dashboard</p>
+
+       {/* utilizando o contexto */}
+       <p>{nomeDoUsuario}</p>
+
+
        <p>Contador: { counterRef.current.counter }</p>
        <button onClick={ () => counterRef.current.counter++ }>Somar</button>
        <Link to={'/entrar'}> Login</Link>
